@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue JS Tutorial</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+  </head>
+  <body>
+    <h1>Hello, Vue :D</h1>
+
+    <div id="app">
+      <a :href="url" target="_blank" rel="noreferrer">Check my Github</a>
+      <div v-if="showBooks">
+        <h1>First Book Manually</h1>
+        <h1>{{books[0].title}} - {{books[0].author}}</h1>
+
+        <h1>Using V-For</h1>
+        <ul>
+          <li
+            v-for="item in filteredBooks"
+            :class="{fav: item.isFav}"
+            @click="toggleFavorite(item)"
+          >
+            <img
+              style="width: 100px"
+              :src="item.imgSrc"
+              :alt="'Book Cover - ' + item.title"
+            />
+            <p>{{item.title}} - {{item.author}}</p>
+          </li>
+        </ul>
+      </div>
+
+      <button @click="toggleBooks">
+        <span v-if="showBooks">Hide Books</span>
+        <span v-else>Show Books</span>
+      </button>
+
+      <div class="box" @mouseover="handleEvent($event, 'Test')">
+        Mouse Over (Enter)
+      </div>
+      <div class="box" @mouseleave="handleEvent">MouseLeave</div>
+      <div class="box" @dblclick="handleEvent">Double Click</div>
+      <div class="box" @mousemove="handleMouse">
+        Position: X - {{x}} Y - {{y}}
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
